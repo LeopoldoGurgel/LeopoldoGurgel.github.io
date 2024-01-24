@@ -48,7 +48,10 @@ export const QUERY_POSTS = gql`
       _id
       title
       content
-      author
+      author {
+        _id
+        name
+      }
       createdAt
     }
   }
@@ -60,7 +63,10 @@ export const QUERY_SINGLE_POST = gql`
       _id
       title
       content
-      author
+      author {
+        _id
+        name
+      }
       createdAt
       comments {
         _id
@@ -95,7 +101,10 @@ query comment($commentId: ID!){
   comment(commentId: $commentId){
     _id
     content
-    author
+    author {
+      _id
+      name
+    }
     createdAt
     comments {
       _id
