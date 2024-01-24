@@ -86,13 +86,17 @@ function Header({currentPage, handlePageChange, username, userEmail}) {
                                 
                 <ul id='menu' ref={menuRef} className= {window.innerWidth > 992 ? 'nav nav-tabs col-lg-8 col-10 justify-content-end' :'nav bg-secondary text-decoration-none text-white flex-column float-right justify-content-end collapse'}>
                     <li className="nav-item">
-                        <a href="#home" 
+                        <a href="#home"
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#menu" 
                         onClick={() => handlePageChange("Home")}
                         className={currentPage === "Home" ? "active nav-link" : "nav-link"}
                         >Home</a>
                     </li>
                     <li className="nav-item">
-                        <a href="#pseudocodes" 
+                        <a href="#pseudocodes"
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#menu" 
                         onClick={() => handlePageChange("Pseudocodes")}
                         className={currentPage === "Pseudocodes" || currentPage === "Pseudocode" ? "active nav-link" : "nav-link"}
                         >Pseudocodes</a>
@@ -111,6 +115,8 @@ function Header({currentPage, handlePageChange, username, userEmail}) {
                         <div className={`dropdown-menu ${isAboutOpen ? 'show text-bg-light border-4' : ''}`} aria-labelledby="aboutDropdown">
                         <a
                             href="#about"
+                            data-bs-toggle="collapse" 
+                            data-bs-target="#menu"
                             onClick={() => {
                             handlePageChange("About");
                             closeAbout();
@@ -121,6 +127,8 @@ function Header({currentPage, handlePageChange, username, userEmail}) {
                         </a>
                         <a
                             href="#portfolio"
+                            data-bs-toggle="collapse" 
+                            data-bs-target="#menu"
                             onClick={() => {
                             handlePageChange("Portfolio");
                             closeAbout();
@@ -131,9 +139,14 @@ function Header({currentPage, handlePageChange, username, userEmail}) {
                         </a>
                         <a href="#contact" 
                         onClick={() => handlePageChange("Contact")}
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#menu"
                         className={`dropdown-item ${currentPage === "Contact" ? "active" : ""}`}
                         >Contact</a>
-                        <a href="#resume" 
+
+                        <a href="#resume"
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#menu" 
                         onClick={() => handlePageChange("Resume")}
                         className={`dropdown-item ${currentPage === "Resume" ? "active" : ""}`}
                         >Resume</a>
@@ -144,6 +157,8 @@ function Header({currentPage, handlePageChange, username, userEmail}) {
                         <li className='nav-item'>
                             <a
                             href="#dashboard"
+                            data-bs-toggle="collapse" 
+                            data-bs-target="#menu"
                             onClick={() => handlePageChange("Dashboard")}
                             className={currentPage === "Dashboard" ? "active nav-link" : "nav-link"}
                             >Dashboard
@@ -187,6 +202,8 @@ function Header({currentPage, handlePageChange, username, userEmail}) {
                             <div className={`dropdown-menu ${isLoginOpen ? 'show text-bg-light border-4' : ''}`} aria-labelledby="aboutDropdown">
                                 <a 
                                 className='dropdown-item'
+                                data-bs-toggle="collapse" 
+                                data-bs-target="#menu"
                                 onClick={()=>{
                                     toggleLoginModal();
                                 }}
@@ -196,6 +213,8 @@ function Header({currentPage, handlePageChange, username, userEmail}) {
                                 <LoginModal show={showLoginModal} handleClose={closeLoginModal} />
                                 <a
                                 className='dropdown-item'
+                                data-bs-toggle="collapse" 
+                                data-bs-target="#menu"
                                 onClick={()=>{
                                     toggleSignupModal();
                                 }}    
