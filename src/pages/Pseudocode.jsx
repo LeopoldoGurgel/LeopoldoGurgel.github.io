@@ -62,6 +62,7 @@ export default function Pseudocode({handlePageChange, post}){
         onCompleted: (data) => setPostAuthorData(data)
     });
     
+    
     // query post info
 
     const {loading: postLoading, error: postError} = useQuery(QUERY_SINGLE_POST, {
@@ -145,6 +146,8 @@ export default function Pseudocode({handlePageChange, post}){
             setShowMessage(true)
         }    
     }
+
+    console.log(postAuthorData)
   
    
     /////////////////////////////////////////////////////////////////////////////////
