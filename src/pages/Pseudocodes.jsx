@@ -6,7 +6,7 @@ import OlderPostsModal from '../components/OlderPostsModal';
 const Pseudocodes = ({handlePageChange}) => {
     const {loading: postsLoading, error: postsError, data: postsData} = useQuery(QUERY_POSTS);
     const {loading: userLoading, error: userError, data: userData} = useQuery(QUERY_USERS);
-
+        
     const [postArray, setPostArray] = useState([]);    
     const [isModalOpen, setModalOpen] = useState(false);
   
@@ -28,7 +28,8 @@ const Pseudocodes = ({handlePageChange}) => {
     const toggleModal = () => setModalOpen(!isModalOpen);
     const closeModal = () => setModalOpen(false);
 
-  
+    console.log(postArray)
+    console.log(userData)
 
     return(
         <div>
@@ -48,13 +49,7 @@ const Pseudocodes = ({handlePageChange}) => {
                             <div key={post._id} className="row border-top border-secondary p-2" >                                
                                 <h5 className="col-10 cursor-pointer"><a onClick={()=>handlePageChange('Pseudocode', post)}  >{post.title}</a></h5>
                                 <p className="col-10 cursor-pointer"><a onClick={()=>handlePageChange('Pseudocode', post)} >{`${post.content.substring(0, 200)}${post.content.length > 200 ? '...' : ''}`}</a></p>
-                                <p className="text-secondary">{
-                                    userData && userData.users.map((user)=>{
-                                        if(user._id === post.author){
-                                            return <span key={user._id}>{user.name} at </span>
-                                        }
-                                    })
-                                    }{post.createdAt}</p>
+                                <p className="text-secondary">Written by {post.author.name} at {post.createdAt}</p>
                             </div>
                     ))}                   
                 </div>                                                           

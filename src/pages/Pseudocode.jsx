@@ -17,9 +17,9 @@
 /////////////////////////////////////////////////////////////////////////////////
 
 
-import React, { useState, useEffect } from "react"
-import { useQuery, useMutation, useSubscription } from "@apollo/client"
-import { QUERY_USER, QUERY_SINGLE_POST } from "../utils/queries"
+import React, { useState } from "react"
+import { useQuery, useMutation } from "@apollo/client"
+import { QUERY_SINGLE_POST } from "../utils/queries"
 import { ADD_POST_COMMENT } from "../utils/mutations";
 import Comment from '../components/Comment.jsx'
 import Auth from '../utils/auth.js'
@@ -32,7 +32,6 @@ export default function Pseudocode({handlePageChange, post}){
     // states section
 
     const [commentInputValue, setCommentInputValue] = useState('');
-    const [postAuthorData, setPostAuthorData] = useState(null);    
     const [postData, setPostData] = useState(null);
     const [showComments, setShowComments] = useState(false);
     const [showCommentForm, setShowCommentForm] = useState(false);
@@ -43,15 +42,6 @@ export default function Pseudocode({handlePageChange, post}){
     /////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////
     // Queries section
-
-    // query single user from id
-
-    const {loading: postAuthorLoading, error: postAuthorError} = useQuery(QUERY_USER,{
-        variables: {userId: post.author},
-        onCompleted: (data) => setPostAuthorData(data)
-    });
-
-    
     
     // query post info
 
@@ -74,17 +64,13 @@ export default function Pseudocode({handlePageChange, post}){
     /////////////////////////////////////////////////////////////////////////////////
     // Error handling section
 
-    if(postAuthorError){
-        console.log('Error: ', postAuthorError.message);
-        return <div>Error: {postAuthorError.message}</div>
-    }
 
     if(postError){
         console.log('Error: ', postError);
         return <div>Error: {postError.message}</div>
     }
 
-    if(postAuthorLoading || postLoading){
+    if(postLoading){
         return <div>Loading...</div>
     } 
 
@@ -133,7 +119,6 @@ export default function Pseudocode({handlePageChange, post}){
         }
     }
 
-    console.log(postAuthorData)
   
 
    
@@ -168,7 +153,7 @@ export default function Pseudocode({handlePageChange, post}){
                         </React.Fragment>
                     ))}
                 </p>
-                <p className="text-secondary">{postData?.user && postData?.user?.name && (<span>Written by {postAuthorData?.user?.name} </span>)}at {post?.createdAt}</p>
+                <p className="text-secondary"> at {post?.createdAt}</p>
             </div>
             
             <div id="commentArea">
