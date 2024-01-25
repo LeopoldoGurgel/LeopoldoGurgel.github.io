@@ -17,8 +17,8 @@
 /////////////////////////////////////////////////////////////////////////////////
 
 
-import React, { useState, useEffect } from "react"
-import { useQuery, useMutation, useSubscription } from "@apollo/client"
+import React, { useState, useEffect, useRef } from "react"
+import { useQuery, useMutation } from "@apollo/client"
 import { QUERY_USER, QUERY_SINGLE_POST } from "../utils/queries"
 import { ADD_POST_COMMENT } from "../utils/mutations";
 import Comment from '../components/Comment.jsx'
@@ -37,7 +37,18 @@ export default function Pseudocode({handlePageChange, post}){
     const [showComments, setShowComments] = useState(false);
     const [showCommentForm, setShowCommentForm] = useState(false);
     const [ error, setError ] = useState('');
- 
+    const [ showMessage, setShowMessage] = useState(false)
+    const [message, setMessage] = useState('You must verify your account to leave comments.')
+
+
+    // had to do this because, sometimes, the queries were completed before the component was completly mounted.
+    // that was causing an error because it's not possible to update a state before it exists.
+    // the isMounted boolean will be used to avoid those errors
+    const isMounted = useRef(true);
+
+    useEffect(() => {
+        isMounted.current = false;
+    }, []); 
 
     /////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////
@@ -45,12 +56,11 @@ export default function Pseudocode({handlePageChange, post}){
     // Queries section
 
     // query single user from id
-
+    
     const {loading: postAuthorLoading, error: postAuthorError} = useQuery(QUERY_USER,{
         variables: {userId: post.author},
         onCompleted: (data) => setPostAuthorData(data)
     });
-
     
     // query post info
 
@@ -58,9 +68,6 @@ export default function Pseudocode({handlePageChange, post}){
         variables: {postId: post._id},
         onCompleted: (data) => setPostData(data)
     });
-
-    // function to query comment replies by COMMENT_Id.
-
     
     /////////////////////////////////////////////////////////////////////////////////
     // Mutations section
@@ -87,52 +94,58 @@ export default function Pseudocode({handlePageChange, post}){
         return <div>Loading...</div>
     } 
 
+    if (Auth.getProfile()?.verified){
+        setShowMessage(false)
+    } 
+
     /////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////
     //Event handler functions section
-
     
-
+    
     // Send comment button
 
     const handleSendComment = async(e) =>{
         
         e.preventDefault();
 
-        try{
-            const {newCommentData} = await addComment({
-                variables: {postId: postData.post._id, content: commentInputValue}
-            })
-
-            let newComment = {
-                id: Math.random(),
-                author: Auth.getProfile()?.data?._id,
-                content: commentInputValue,
-                comments: [],
-                createdAt: 'Just posted'
-            }
-
-            setPostData((prevData) => ({
-                ...prevData,
-                post: {
-                    ...prevData.post,
-                    comments: [
-                        ...prevData.post.comments,
-                        newComment
-                    ]
+        if(Auth.getProfile()?.verified){
+            setShowMessage(false)
+            try{
+                const {newCommentData} = await addComment({
+                    variables: {postId: postData?.post._id, content: commentInputValue}
+                })
+    
+                let newComment = {
+                    id: Math.random(),
+                    author: Auth.getProfile()?.data?._id,
+                    content: commentInputValue,
+                    comments: [],
+                    createdAt: 'Just posted'
                 }
-            }))
-
-            setCommentInputValue('')
-           
-        }catch(error){
-            console.log('Error: ', error.message);
-            setError(error.message);
-        }
+    
+                isMounted.current && setPostData((prevData) => ({
+                    ...prevData,
+                    post: {
+                        ...prevData.post,
+                        comments: [
+                            ...prevData.post.comments,
+                            newComment
+                        ]
+                    }
+                }))
+    
+                setCommentInputValue('')
+            }catch(error){
+                console.log('Error: ', error.message);
+                setError(error.message);
+            }
+        } else {
+            setShowMessage(true)
+        }    
     }
   
-
    
     /////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////    
@@ -141,7 +154,7 @@ export default function Pseudocode({handlePageChange, post}){
    
     
     /////////////////////////////////////////////////////////////////////////////////
-
+    
     return(
         <div id="containerDiv">
 
@@ -165,7 +178,7 @@ export default function Pseudocode({handlePageChange, post}){
                         </React.Fragment>
                     ))}
                 </p>
-                <p className="text-secondary">{postData?.user && postData?.user?.name && (<span>Written by {postAuthorData?.user?.name} </span>)}at {post?.createdAt}</p>
+                <div className="text-secondary">Written by {postAuthorData ? postAuthorData.user.name : 'Unknown author'} at {post?.createdAt}</div>
             </div>
             
             <div id="commentArea">
@@ -176,17 +189,25 @@ export default function Pseudocode({handlePageChange, post}){
             /////////////////////////////////////////////////////////////////////////////////
             */}
 
-                <div id="commentButtons" className="row">
+                <div id="commentButtons" className="row ms-2">
                     <button className="btn btn-outline-dark col-auto"
                     id="showCommentsBtn"
                     type="button"
                     onClick={()=> setShowComments(!showComments)} 
                     >
-                        {postData && postData.post.comments.length} comments 
+                        {postData && postData.post.comments.length} 
+                        {postData?.post.comments.length > 1 ? ' comments' : ' comment'} 
                     </button>
 
                     <button className="btn btn-outline-dark col-auto ms-4"
-                    onClick={()=>setShowCommentForm(!showCommentForm)} >Leave a Comment</button>
+                    onClick={()=>{
+                        if(Auth.getProfile()?.verified){
+                            setShowCommentForm(!showCommentForm)
+                        }else{
+                            !Auth.getProfile() && setMessage('You need to Log in or Sign up to leave comments.')
+                            setShowMessage(true)
+                        }
+                        }} >Leave a Comment</button>
                     
                 </div>
                 
@@ -207,8 +228,10 @@ export default function Pseudocode({handlePageChange, post}){
                         className="btn btn-dark"
                         onClick={handleSendComment} >Send Comment</button>
                         {error && <p className="text-danger p-2">{error}</p>}
-                    </form>)}
-
+                        
+                    </form>)
+                    }
+                {showMessage && (<div className="badge text-bg-danger p-2 mt-3">{message}</div>)}
                 {showComments && (<div className="box" id='postCommentForm'>
                     
                 </div>)}

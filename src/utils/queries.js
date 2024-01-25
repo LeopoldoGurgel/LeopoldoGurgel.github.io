@@ -11,6 +11,7 @@ export const QUERY_USER = gql`
       posts {
         _id
         title
+        author
         content
       }
     }
@@ -35,6 +36,7 @@ export const QUERY_USERS = gql`
       posts {
         _id
         title
+        author
         content
       }
     }
@@ -48,6 +50,9 @@ export const QUERY_POSTS = gql`
       _id
       title
       content
+      comments {
+        _id
+      }
       author
       createdAt
     }

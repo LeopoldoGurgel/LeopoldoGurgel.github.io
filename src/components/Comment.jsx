@@ -13,8 +13,11 @@ const Comment = ({comment, postData}) => {
     const [commentState, setCommentState] = useState({});
     const [deletedComments, setDeletedComments] = useState([]);
     const [ error, setError] = useState('');
+    const [ showMessage, setShowMessage] = useState(false)
+    const [message, setMessage] = useState('You must verify your account to leave comments.')
+        
     
-          
+    // queries
     const { loading: visitorLoading, error: visitorError } = useQuery(QUERY_USERS, {
         onCompleted: (data) => setVisitorsData(data),
         });         
@@ -25,49 +28,60 @@ const Comment = ({comment, postData}) => {
         onCompleted: (commentData) => {
             setCommentState(commentData)
         }
-    })
-    
+    })    
 
     // Mutations
     const [addReply, {addReplyError, addReplyData}] = useMutation(ADD_REPLY);
     const [removeComment, {removeCommentError, removeCommentData}] = useMutation(REMOVE_POST_COMMENT);
     const [removeReply, {removeReplyerror, removeReplyData}] = useMutation(REMOVE_REPLY)
 
-    
+
+    if(Auth.getProfile()?.verified){
+        setShowMessage(false)
+    }
     
     const handleSendReply = async (e) => {
         e.preventDefault();
 
-        try {
-            const {data} = await addReply({
-                variables: {COMMENT_Id: comment._id, content: replyContent}
-            });
+        if(Auth.getProfile()?.verified){
+            setShowMessage(false)
+            try {
+                const {data} = await addReply({
+                    variables: {COMMENT_Id: comment._id, content: replyContent}
+                });
 
-            let newReply = {
-                id: Math.random(),
-                author: Auth.getProfile()?.data?._id,
-                content: replyContent,
-                comments: [],
-                createdAt: 'Just posted'
-            }
-
-            setCommentState((prevData) => ({
-                ...prevData,
-                comment: {
-                    ...prevData.comment,
-                    comments: [
-                        ...prevData.comment.comments,
-                        newReply
-                    ]
+                let newReply = {
+                    id: Math.random(),
+                    author: Auth.getProfile()?.data?._id,
+                    content: replyContent,
+                    comments: [],
+                    createdAt: 'Just posted'
                 }
-            }))
-            setShowReply(!showReply)
-            setReplyContent('')
-            console.log('Reply sent: ', data)
-        } catch (error) {
-            console.log("Error: ", error.message)
-            setError(error.message)
+
+                setCommentState((prevData) => ({
+                    ...prevData,
+                    comment: {
+                        ...prevData.comment,
+                        comments: [
+                            ...prevData.comment.comments,
+                            newReply
+                        ]
+                    }
+                }))
+                setShowReply(!showReply)
+                setReplyContent('')
+                console.log('Reply sent: ', data)
+            } catch (error) {
+                console.log("Error: ", error.message)
+                setError(error.message)
+            }
+        } else {
+            if(!Auth.getProfile()){
+                setMessage('You need to Log in or Sign up to leave comments.')
+            }
+            setShowMessage(true)
         }
+            
     }
 
     const handleDelete = async (e, parent, child) => {
@@ -129,7 +143,16 @@ const Comment = ({comment, postData}) => {
                             <p className="ms-4">{comment.content}</p>
                             <p className="ms-4"><span className="text-secondary ">{comment.createdAt}</span></p>
                             {!showReply && <button className={"btn btn-sm btn-outline-dark"}
-                            onClick={() => setShowReply(!showReply)} >Reply</button>}
+                            onClick={() => {
+                                if(Auth.getProfile()?.verified){
+                                    setShowReply(!showReply)
+                                }else {
+                                    if(!Auth.getProfile()){
+                                        setMessage('You need to Log in or Sign up to leave comments.')
+                                    }
+                                    setShowMessage(true)
+                                }                                
+                                }} >Reply</button>}
                             {showReply && (<form>
                                 <textarea className="w-100 mt-2" rows="1"
                                 value= {replyContent}
@@ -138,7 +161,7 @@ const Comment = ({comment, postData}) => {
                                 onClick={handleSendReply} >Send</button>
                                 {error && <p className="text-danger p-2">{error}</p>}
                             </form>)}
-
+                            {showMessage && (<div className="badge text-bg-danger p-2 mt-3 d-block">{message}</div>)}
                             {/* 
                             /////////////////////////////////////////////////////////////////////////////////
                             COMMENT REPLIES 
