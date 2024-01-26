@@ -28,9 +28,6 @@ const Pseudocodes = ({handlePageChange}) => {
     const toggleModal = () => setModalOpen(!isModalOpen);
     const closeModal = () => setModalOpen(false);
 
-    console.log(postArray)
-    console.log(userData)
-
     return(
         <div>
             <h2 className="mb-4">Pseudocodes</h2>
