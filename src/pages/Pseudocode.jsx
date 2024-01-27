@@ -61,7 +61,7 @@ export default function Pseudocode({handlePageChange, post}){
         variables: {userId: post.author},
         onCompleted: (data) => setPostAuthorData(data)
     });
-    
+
     
     // query post info
 
@@ -146,8 +146,6 @@ export default function Pseudocode({handlePageChange, post}){
             setShowMessage(true)
         }    
     }
-
-    console.log(postAuthorData)
   
    
     /////////////////////////////////////////////////////////////////////////////////
@@ -176,8 +174,7 @@ export default function Pseudocode({handlePageChange, post}){
 
                 <p>{post.content.split('\n').map((line, index) => (
                         <React.Fragment key={index}>
-                            {line}
-                            <br />
+                            <p>{line}</p>
                         </React.Fragment>
                     ))}
                 </p>

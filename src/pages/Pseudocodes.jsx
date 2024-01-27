@@ -44,8 +44,6 @@ const Pseudocodes = ({handlePageChange}) => {
     const toggleModal = () => setModalOpen(!isModalOpen);
     const closeModal = () => setModalOpen(false);
 
-  
-
     return(
         <div>
             <h2 className="mb-4">Pseudocodes</h2>
@@ -61,6 +59,7 @@ const Pseudocodes = ({handlePageChange}) => {
 
                     {postArray.map((post) => (                                              
                             <PostCard key={post.id} post={post} userData={userData} handlePageChange={handlePageChange} />
+
                     ))}                   
                 </div>                                                           
             </div>
