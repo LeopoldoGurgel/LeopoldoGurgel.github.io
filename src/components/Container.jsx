@@ -27,8 +27,7 @@ export default function Container() {
       setCurrentPage(page);
 
       if(page === 'Pseudocode') {
-        setSelectedPost(post);
-       
+        setSelectedPost(post);       
       }
     }
   

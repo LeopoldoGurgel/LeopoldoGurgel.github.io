@@ -61,6 +61,7 @@ export default function Pseudocode({handlePageChange, post}){
         variables: {userId: post.author},
         onCompleted: (data) => setPostAuthorData(data)
     });
+
     
     // query post info
 
