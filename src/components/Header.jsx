@@ -80,8 +80,10 @@ function Header({currentPage, handlePageChange, username, userEmail}) {
     return (
         <div className='fluid pt-4 pe-4 ps-4  mb-3 border-bottom border-secondary'>
             <div className="row mb-3">
-                <div className='col-8 col-md-4 col-xl-2' >                                     
-                        <img id='logo' className='img-fluid rounded' src="images/pseudocoderLogoCut.png" alt="Pseudocoder Logo" />
+                <div className='col-8 col-md-4 col-xl-2' >
+                    <a href=''>                                                         
+                        <img id='logo' onClick={()=> window.location.reload()} className='img-fluid rounded' src="images/pseudocoderLogoCut.png" alt="Pseudocoder Logo" />
+                    </a>
                 </div>
                                 
                 <ul id='menu' ref={menuRef} className= {window.innerWidth > 992 ? 'nav nav-tabs col-lg-8 col-10 justify-content-end' :'nav bg-secondary text-decoration-none text-white flex-column float-right justify-content-end collapse'}>
