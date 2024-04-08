@@ -1,0 +1,119 @@
+.placeholderDiv {
+    height: 50px;
+    display:block;
+    width: 100%;
+    opacity: 0;
+}
+
+.hero-left {
+    animation: fadeIn 1s;
+}
+
+.imgPlaceholder, .deskImage {
+    background-color: gray;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    animation: fadeIn-delay 1.5s;
+    
+}
+
+
+.webDev {
+    color: purple;
+}
+
+.typing-animation {
+    color: brown;
+    position: relative;
+    min-width: 300px;
+}
+
+.work-button {
+    margin: 35px auto 0px;
+    display: block;
+    width: fit-content;
+    padding:15px 40px
+}
+
+.typing-animation::before {
+    content:' Web Design';
+    animation: words 20s infinite;
+}
+
+.typing-animation::after {
+    content: '';
+    position: absolute;
+    width: calc(100% + 8px);
+    height: calc(100% + 3px);
+    border-left: 4px solid brown;
+    background-color: white;
+    right: -8px;
+    animation: cursor 0.7s infinite, typing 20s steps(15) infinite;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0%;
+        transform: translateY(30%)
+    }
+
+    100% {
+        opacity: 100%;
+        transform: translateY(0%)
+    }
+}
+
+@keyframes fadeIn-delay {
+    0% {
+        opacity: 0%;
+        transform: translateY(30%)
+    }
+
+    33%{
+        opacity:0;
+        transform: translateY(30%)
+    }
+
+    100% {
+        opacity: 100%;
+        transform: translateY(0%)
+    }
+}
+
+@keyframes cursor {
+    to {
+        border-left: 2px solid white;
+    }
+}
+
+@keyframes typing {
+    10%, 15%, 30%, 35%, 50%, 55%, 70%, 75%, 90%, 95% {
+        width: 0;
+    }
+
+    5%, 20%, 25%, 40%, 45%, 60%, 65%, 80%, 85% {
+        width: calc(100% + 8px);
+    }
+}
+
+@keyframes words {
+    0%, 20%{
+        content: 'Web Design'
+    }
+    21%, 40% {
+        content: 'Databases'
+    }
+    41%, 60% {
+        content: "External API's"
+    }
+    61%, 80%{
+        content: 'Node/Express Servers'
+    }
+    81%, 100%{
+        content:'GraphQl'
+    }
+    
+}
