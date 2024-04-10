@@ -1,70 +1,62 @@
-.overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
+
+
+.icon {
+    font-size: 1.5em;
+    border-radius: 5px;
 }
 
-.overlay {
-    opacity: 0;    
-    transition: opacity 0.3s ease-in-out;
+.projectCard {
+    width: 48%;
+    min-width: 300px;
+    border-radius: 10px;
+    border: solid 1px lightsteelblue;
+}
+
+.projectCardImg {
+    border: 1px solid lightgray;
+    padding: 1%;
+    border-radius: 5px;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.projectsContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.techCard {
+    border: lightsteelblue solid 1px;
+    width: 110px;
+    padding: 2px;
+    margin: 3px;
+    border-radius: 15px;
+}
+
+.techCard p {
+    
+}
+
+.centered {
     display: flex;
     justify-content: center;
-    flex-direction: column;
-    align-items: center;
 }
 
-.overlay-link,
-.overlay-text {    
-    box-sizing: border-box;
-    justify-content: center;
-    align-items: center;  
-    margin: 2em;
-    padding: 3px;  
+.rounded5{
+    border-radius: 5px;
 }
 
-.overlay:hover {
-    opacity: 1;
+.rounded15{
+    border-radius: 15px;
 }
 
-.image-container:hover img {
-    opacity: 0.3;
-}
 
-@media (max-width: 992px){
-    #menu a {
-        color: lightgray;
+@media screen and (max-width: 700px) {
+    .projectsContainer {
+        display: block;
     }
 
-    .image-container img {
-        opacity: 0.3;
-    }
-
-    .overlay { opacity: 1;}
-
-    .overlay-link, 
-    .overlay-text {
-        margin: 1em 
-    }
-
-
-
-}
-
-@media (min-width: 1200px){
-    #menu {
-        font-size: 1.2em;
-    }
-
-    .container-xl {
-        display: flex;
-        justify-content: space-between;   
-    }
-
-    .smaller {
-        width: 48%;
+    .projectCard {
+        width: 100%;
     }
 }
-

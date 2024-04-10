@@ -1,0 +1,114 @@
+
+.cardsContainer{
+    display:flex;
+    justify-content: space-around;
+    position: relative;    
+}
+
+.featureCard {    
+    background-color: lightsteelblue;
+    border-radius: 10px;
+    margin: 0 2px;
+    min-width: 300px;
+    text-align: center;
+    width: 33%;
+    
+}
+
+.featureCard>div {
+    font-size: 1.2em;
+}
+
+.featuresContainer {
+    overflow-x: hidden;
+}
+
+.fadeUp {
+    animation: fadeUp 1s;
+}
+
+
+@media screen and (max-width: 900px) {
+
+    
+    .cardsContainer{
+        max-width: 100vw;
+        animation: slideAnimation 10s infinite;
+        height: fit-content;    
+    }
+
+   .cardsContainer h4 {
+    font-size: 1.2em;  
+    position: relative;  
+    
+   }
+
+
+   .cardsContainer>div{
+    font-size: 1.5em;
+   }
+
+   #f1 {
+        animation: 30s f1 infinite;
+    }
+
+    #f2 {
+        animation: 30s f2 infinite;
+    }
+
+    #f3 {
+        animation: 30s f3 infinite;
+    }
+
+
+    @keyframes slideAnimation {
+        5%, 95% {
+            transform: translateX(0%);
+            opacity:1;
+        }
+
+        0%, 100% {
+            opacity: 0;
+            transform: translateX(-100%)
+        }
+    }
+
+    @keyframes f1 {
+        0%, 33.33% {
+            display: block;
+        }
+
+        33.34%, 100% {
+            display: none;
+        }
+    }
+
+    @keyframes f2 {
+        0%, 33.33% {
+            display: none;
+        }
+
+        33.34%, 66.66% {
+            display: block;
+        }
+
+        66.67%, 100% {
+            display:none;
+        }
+    }
+
+    @keyframes f3 {
+        0%, 33.33% {
+            display: none;
+        }
+
+        33.34%, 66.66% {
+            display: none;
+        }
+
+        66.67%, 100% {
+            display:block;
+        }
+    }
+    
+}
