@@ -1,4 +1,5 @@
 import React from 'react';
+import './styles/App.css'
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import Container from './components/Container';
