@@ -85,6 +85,7 @@ function Header({currentPage, handlePageChange, username, userEmail}) {
     };
 
 
+
     // old version
 
     // return (
@@ -95,6 +96,7 @@ function Header({currentPage, handlePageChange, username, userEmail}) {
     //             <div className='col-8 col-md-4 col-xl-2' >                                     
     //                     <img id='logo' className='img-fluid rounded' src="images/pseudocoderLogoCut.png" alt="Pseudocoder Logo" />
     //             </div>
+
                                 
     //             <ul id='menu' ref={menuRef} className= {window.innerWidth > 992 ? 'nav nav-tabs col-lg-8 col-10 justify-content-end' :'nav bg-secondary text-decoration-none text-white flex-column float-right justify-content-end collapse'}>
     //                 <li className="nav-item">
