@@ -111,7 +111,7 @@ return (
             <Contact />
         </div>
 
-        <div className="hr"></div>
+        
 
     </div>
 )
