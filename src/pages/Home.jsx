@@ -1,7 +1,9 @@
 import '../styles/Home.css'
 import Features from '../components/Features'
-import Portfolio from '../components/Portfolio.jsx'
-
+import Portfolio from '../components/Portfolio.jsx';
+import AboutMe from '../components/AboutMe.jsx';
+import Resume from '../components/Resume.jsx';
+import Contact from '../components/Contact.jsx';
 // {message === 'access_denied' && <p>You don't have access to this page, you trouble maker!</p>}
 
 /* 
@@ -93,27 +95,24 @@ return (
 
         <div className="hr"></div>
 
-        <div id="contact">
-            <div id="contactContainer"  className='container pt-4 pt-sm-5 bg-danger'>
-
-            </div>
-        </div>
-
-        <div className="hr"></div>
-
         <div id="about">
-            <div id="aboutContainer"  className='container pt-4 pt-sm-5 bg-danger'>
-
-            </div>
+            <AboutMe />
         </div>
-
+        
         <div className="hr"></div>
 
         <div id="resume">
-            <div id="resumeContainer"  className='container pt-4 pt-sm-5 bg-danger'>
-
-            </div>
+            <Resume />
         </div>
+
+        <div className="hr"></div>
+
+        <div id="contact">
+            <Contact />
+        </div>
+
+        <div className="hr"></div>
+
     </div>
 )
 }

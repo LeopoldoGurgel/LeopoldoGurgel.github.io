@@ -6,3 +6,7 @@
 p {
     text-indent: 50px;
 }
+
+.text-bold {
+    font-weight: bold;
+}

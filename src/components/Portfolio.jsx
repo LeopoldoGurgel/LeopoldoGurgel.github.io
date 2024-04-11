@@ -29,13 +29,6 @@ const TechCard = ({name}) => {
     }
 
     return (
-        // <div className='techCard'>
-        //     <div className="centered">
-        //         {icon && icon}
-        //     </div>
-            
-        //     <p className=''>{name}</p>
-        // </div>
 
         <div className="card techCard">
             <div className="card-body centered icon">
@@ -72,7 +65,7 @@ const ProjectCard = ({id, title, description, pageURL, repoURL, techs, src, alt}
                         <button className="accordion-button" type='button' data-bs-toggle='collapse' data-bs-target={'#two'+ id} aria-expanded='true' aria-controls={'two'+ id}>Technologies</button>
                     </h3>
                     <div id={'two'+ id} className="accordion-collapse collapse" data-bs-parent={'#' + id}>
-                        <div className='d-flex'>
+                        <div className='d-flex techContainer'>
                         {techs.map((tech, index) => {
                             return <TechCard 
                             name= {tech}
@@ -109,18 +102,19 @@ const ProjectCard = ({id, title, description, pageURL, repoURL, techs, src, alt}
 
 const Portfolio = () => {
     return (
-        <div id="portfolioContainer"  className='container pt-4 pt-sm-5'>
+        <div id="portfolioContainer"  className='container pt-sm-5'>
 
-                <div className="placeholderDiv">  </div>
+                {/* <div className="placeholderDiv">  </div> */}
 
                 <div className="fadeUp">
-                    <h2 className="text-center text-secondary mb-5">Some of my previous works</h2>
+                    <h2 className="text-center text-secondary mt-3 mb-5">Some of my previous works</h2>
                 </div>
 
-                <div className="projectsContainer">
+                <div className="projectsContainer mb-5">
 
                     <ProjectCard 
                     id='ProteinGeneFinder'
+                    className={'mb-3'}
                     title='Protein Gene Finder'
                     description='Protein Gene Finder is a powerful tool that uses server side APIs information to simplify the process of searching for protein genes and related genetic information.'
                     src='images/DNA.jpeg'
