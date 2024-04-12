@@ -296,7 +296,7 @@ function Header({currentPage, handlePageChange, username, userEmail}) {
                             Download my Resume
                             </NavDropdown.Item>                            
                         </NavDropdown>
-                        <Nav.Link href='#journal'>Journal</Nav.Link>                    
+                        {/* <Nav.Link href='#journal'>Journal</Nav.Link>                     */}
                     </Nav>
 
                     {/* <Form inline id='searchForm'>
