@@ -1,4 +1,4 @@
-import '../styles/Contact.css'
+
 import { SiLinkedin, SiGithub } from 'react-icons/si';
 import {MdEmail} from 'react-icons/md'
 
