@@ -276,7 +276,7 @@ function Header({currentPage, handlePageChange, username, userEmail}) {
     // new version
 
     return (
-        <Navbar expand="lg" className="bg-body-tertiary fixed-top">
+        <Navbar id='navbarContainer' expand="lg" className="bg-body-tertiary fixed-top">
             <Container>
                 <Navbar.Brand href="#home"><span className='text-warning'>Leo</span> Gurgel.</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -285,7 +285,7 @@ function Header({currentPage, handlePageChange, username, userEmail}) {
                         <Nav.Link href="#home">Home</Nav.Link>
                         <Nav.Link href="#portfolio">Portfolio</Nav.Link>
                         <NavDropdown title="About me" id="basic-nav-dropdown">                        
-                            <NavDropdown.Item href="#about">Who am I</NavDropdown.Item>
+                            <NavDropdown.Item href="#about">Who I am</NavDropdown.Item>
                             <NavDropdown.Item href="#resume">
                             My Resume
                             </NavDropdown.Item>
@@ -299,7 +299,7 @@ function Header({currentPage, handlePageChange, username, userEmail}) {
                         <Nav.Link href='#journal'>Journal</Nav.Link>                    
                     </Nav>
 
-                    <Form inline id='searchForm'>
+                    {/* <Form inline id='searchForm'>
                     <Row>
                         <Col xs="auto">
                             <Form.Control
@@ -312,7 +312,7 @@ function Header({currentPage, handlePageChange, username, userEmail}) {
                             <Button type="submit" className='btn-outline-info btn-light'>&#128269;</Button>
                         </Col>
                     </Row>
-                </Form>
+                </Form> */}
                 </Navbar.Collapse>
                 
             </Container>

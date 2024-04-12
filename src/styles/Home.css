@@ -3,6 +3,10 @@
     width: 100%;
 }
 
+.fade-up-animation {
+    animation: fade-up 1s;
+}
+
 .hero-left {
     animation: fadeUp 1s;
 }
@@ -65,7 +69,17 @@
     padding:15px 40px
 }
 
+@keyframes fadeUp {
+    0% {
+        opacity: 0%;
+        transform: translateY(30%)
+    }
 
+    100% {
+        opacity: 100%;
+        transform: translateY(0%)
+    }
+}
 
 @keyframes fadeUp-delay {
     0% {

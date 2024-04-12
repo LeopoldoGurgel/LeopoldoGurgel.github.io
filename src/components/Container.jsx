@@ -50,13 +50,13 @@ export default function Container() {
     
   
     return (
-      <div>
+      <div className='app'>
 
-        <Header currentPage={currentPage} handlePageChange={handlePageChange} username={username} userEmail={userEmail} />
+        <Header  currentPage={currentPage} handlePageChange={handlePageChange} username={username} userEmail={userEmail} />
 
         <main className='container'>
           <div className="row">
-            <div className="col-xl-10 col-12">{renderPage()}</div>
+            <div className="col-12 col-md-10">{renderPage()}</div>
           </div>
           
         </main>

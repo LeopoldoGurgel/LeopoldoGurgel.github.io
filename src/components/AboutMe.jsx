@@ -7,7 +7,7 @@ const AboutMe = () => {
 
             <div className="placeholder mt-4"></div>
 
-            <h2 className="mb-5 mt-4 text-center">Who am I</h2>
+            <h2 className="mb-5 mt-4 text-center">About me</h2>
             <div className='mb-5'>
                 <img src="images/picofme1.jpg" alt="The portrait of a very handome man who happens to be the develper of this webpage. He is taken." id="picOfMe" />
 

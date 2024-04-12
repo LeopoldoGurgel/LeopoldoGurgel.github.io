@@ -7,10 +7,10 @@ const Resume = () => {
             <h2 className="text-center mt-5">Resume</h2>
             <h3 className="mt-4">Leopoldo Gurgel Barroso Pimentel</h3>
             <div>Fullstack Web Developer</div>
-            <div className="row mt-2">
-                <div className="col-6 col-md-4">(437) 299-6367</div>
-                <div className="col-6 col-md-4">leopoldogbp@gmail.com</div>
-                <div className="col-6 col-md-4"><a href="" className="linkedinLink text-secondary">My LinkedIn Profile</a></div>
+            <div className="row mt-3">
+                <div className="col-10 col-md-4">(437) 299-6367</div>
+                <div className="col-10 col-md-4">leopoldogbp@gmail.com</div>
+                <div className="col-10 col-md-4"><a href="" className="linkedinLink text-secondary">My LinkedIn Profile</a></div>
             </div>
 
             <a href="resume/Leopoldo'sResume.pdf" className='btn btn-outline-secondary m-4' download>Download the PDF file.</a>
