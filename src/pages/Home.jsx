@@ -24,7 +24,7 @@ const Home = ({message, username}) => {
                     <h1 className="mt-3 lh-base text-secondary">
                         Hello{username && <span>, {username}</span>}. My name is <br /><span className="myName text-warning">Leo Gurgel</span>, and I am a <br /><span className="webDev">Web Developer</span>.<br/><span className="typing-animation"></span>
                     </h1>
-                    <a className='btn btn-lg btn-outline-secondary work-button' >Lets work together!</a>
+                    <a className='btn btn-lg btn-outline-secondary work-button' href='#contact' >Lets work together!</a>
                 </div>
                 
             </div>
