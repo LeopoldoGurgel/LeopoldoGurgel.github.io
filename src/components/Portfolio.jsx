@@ -1,6 +1,4 @@
 import '../styles/Portfolio.css'
-import {SiJavascript , SiBulma, SiJquery, SiGithub, SiExpress, SiJson, SiHeroku} from 'react-icons/si'
-import TechCard from './TechCard';
 import ProjectCard from './ProjectCard';
 
 const Portfolio = () => {

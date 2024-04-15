@@ -1,3 +1,5 @@
+import {SiJavascript , SiBulma, SiJquery, SiExpress, SiJson, SiHeroku} from 'react-icons/si'
+
 const TechCard = ({name}) => {
     let icon;
     switch(name){

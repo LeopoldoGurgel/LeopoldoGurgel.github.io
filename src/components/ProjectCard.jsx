@@ -1,3 +1,6 @@
+import TechCard from './TechCard';
+import {SiGithub} from 'react-icons/si'
+
 const ProjectCard = ({id, title, description, pageURL, repoURL, techs, src, alt}) => {
 
     return (
