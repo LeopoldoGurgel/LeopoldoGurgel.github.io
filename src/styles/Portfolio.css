@@ -1,5 +1,4 @@
 
-
 .icon {
     font-size: 1.5em;
     border-radius: 5px;
@@ -58,5 +57,13 @@
 
     .projectCard {
         width: 100%;
+    }
+
+    .techCard {
+        min-width: 45%;
+    }
+    .techContainer {
+        flex-wrap: wrap;
+        justify-content: space-around;
     }
 }

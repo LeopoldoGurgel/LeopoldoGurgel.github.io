@@ -6,7 +6,7 @@ const Features = () => {
                 
                 <div className="fadeUp"><h2 className='mb-5 text-center text-secondary'>Develop anything</h2></div>
 
-                <div className="cardsContainer fadeUp">
+                <div className="cardsContainer fadeUp mb-3">
                     <div id="f1" className='featureCard p-4'>
                         <h4 className='mt-3 mb-2 text-light'>Beautiful designs</h4>
                         <div className='text-light pt-2'>Enjoy the power to create any design <br/>you can imagine with the power of React.js and powerful frameworks such as Bootstrap, Bulma and Tailwind.</div>

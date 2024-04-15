@@ -276,30 +276,30 @@ function Header({currentPage, handlePageChange, username, userEmail}) {
     // new version
 
     return (
-        <Navbar expand="lg" className="bg-body-tertiary fixed-top">
+        <Navbar id='navbarContainer' expand="lg" className="bg-body-tertiary fixed-top">
             <Container>
                 <Navbar.Brand href="#home"><span className='text-warning'>Leo</span> Gurgel.</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                    <Nav.Link href="#home">Home</Nav.Link>
-                    <Nav.Link href="#portfolio">Portfolio</Nav.Link>
-                    <Nav.Link href="#contact">Contact</Nav.Link>
-                    <Nav.Link href='#journal'>Journal</Nav.Link>
-                    <NavDropdown title="About me" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="#about/3.1">Who am I</NavDropdown.Item>
-                        <NavDropdown.Item href="#skills/3.2">
-                        My Skill Set
-                        </NavDropdown.Item>
-                        {/* <NavDropdown.Item href="#action/3.3">Testimonials</NavDropdown.Item> */}
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item href="#download/3.4">
-                        Download my Resume
-                        </NavDropdown.Item>
-                    </NavDropdown>
+                        <Nav.Link href="#home">Home</Nav.Link>
+                        <Nav.Link href="#portfolio">Portfolio</Nav.Link>
+                        <NavDropdown title="About me" id="basic-nav-dropdown">                        
+                            <NavDropdown.Item href="#about">Who I am</NavDropdown.Item>
+                            <NavDropdown.Item href="#resume">
+                            My Resume
+                            </NavDropdown.Item>
+                            <NavDropdown.Item href="#contact">Contact</NavDropdown.Item>
+                            {/* <NavDropdown.Item href="#action/3.3">Testimonials</NavDropdown.Item> */}
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item href="#download">
+                            Download my Resume
+                            </NavDropdown.Item>                            
+                        </NavDropdown>
+                        {/* <Nav.Link href='#journal'>Journal</Nav.Link>                     */}
                     </Nav>
 
-                    <Form inline id='searchForm'>
+                    {/* <Form inline id='searchForm'>
                     <Row>
                         <Col xs="auto">
                             <Form.Control
@@ -312,7 +312,7 @@ function Header({currentPage, handlePageChange, username, userEmail}) {
                             <Button type="submit" className='btn-outline-info btn-light'>&#128269;</Button>
                         </Col>
                     </Row>
-                </Form>
+                </Form> */}
                 </Navbar.Collapse>
                 
             </Container>
