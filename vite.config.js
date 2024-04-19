@@ -9,7 +9,7 @@ export default defineConfig({
     port: 3000,
     open: true,
     proxy: {
-      '/graphql': {
+      '/pseudocodersServer': {
         target: 'https://pseudocoders-server-5222d68eaaf3.herokuapp.com',
         changeOrigin: true,
         secure: false,
